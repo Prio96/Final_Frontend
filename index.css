@@ -9,7 +9,7 @@ header{
     background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),url("images/Header Image.jpg");
     background-size: cover;
     background-position: center;
-    height: 40vh;
+    height: 50vh;
     color:whitesmoke
 }
 /* nav{
