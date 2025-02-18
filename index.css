@@ -1,0 +1,20 @@
+.nav-heads{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.menu{
+    list-style: none;
+}
+header{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),url("images/Header Image.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    color:whitesmoke
+}
+/* nav{
+    background-color: rgb(30, 179, 30);
+} */
+.banner-text{
+    margin-top: 10vh !important;
+}

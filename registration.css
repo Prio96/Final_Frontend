@@ -1,0 +1,46 @@
+.registration-container{
+    height:100vh;
+    width:75%;
+    margin:auto
+}
+.input{
+    padding: 15px 25px;
+    border:none;
+    margin:10px;
+    border-radius: 5px;
+}
+.image-input{
+    background-color: white;
+    padding: 15px 25px;
+    border:none;
+    margin:10px;
+    border-radius: 5px;
+}
+.submit-btn{
+    padding:15px 25px;
+    width:10vw;
+    margin:auto;
+    border:none;
+    background-color: black;
+    color:white;
+    font-size: 20px;
+    border-radius: 10px;
+}
+select{
+    padding: 15px 25px;
+    border:none;
+    margin:10px;
+    border-radius: 5px;
+}
+main{
+    /* background-color: black; */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),url("images/Registration.jpg");
+    background-size: cover;
+    background-position: center;
+}
+nav{
+    background-color: black;
+}
+footer{
+    background-color: black;
+}
