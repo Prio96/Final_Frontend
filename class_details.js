@@ -33,3 +33,5 @@ const displayClassDetails = (doctor) => {
     `
     parent.appendChild(div)
 }
+
+/* <button><a target="_blank" href="doc_details.html?doctorId=${doctor.id}">Details</a></button> */
