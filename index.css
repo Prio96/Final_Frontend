@@ -18,3 +18,6 @@ header{
 .banner-text{
     margin-top: 10vh !important;
 }
+footer{
+    background-color: black;
+}
