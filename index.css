@@ -1,10 +1,3 @@
-.nav-heads{
-    text-decoration: none;
-    color: whitesmoke;
-}
-.menu{
-    list-style: none;
-}
 header{
     background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),url("images/Header Image.jpg");
     background-size: cover;
@@ -18,6 +11,4 @@ header{
 .banner-text{
     margin-top: 10vh !important;
 }
-footer{
-    background-color: black;
-}
+
