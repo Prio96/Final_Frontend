@@ -24,15 +24,14 @@
             <div class="menu-container d-flex gap-3">
                 <li class="menu"><a class="nav-heads" href="index.html">Home</a></li>
                 <li class="menu"><a class="nav-heads" href="plans.html">Plans</a></li>
-                <li class="menu"><a class="nav-heads" href="registration.html">Register</a></li>
-                <li class="menu"><a class="nav-heads" href="login.html">Login</a></li>
-                <div class="dropdown">
+                <li class="menu" id="register-link"><a class="nav-heads" href="registration.html">Register</a></li>
+                <li class="menu" id="login-link"><a class="nav-heads" href="login.html">Login</a></li>
+                <div class="dropdown" id="dropdown-link">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                       Profile
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                      <li><a class="dropdown-item active" href="user_details.html">Profile</a></li>
-                      <li><a class="dropdown-item" href="allAppointments.html">All Appointment</a></li>
+                      <li><a class="dropdown-item active" href="profile.html">Profile</a></li>
                       <li onclick="handlelogOut()"><a class="dropdown-item">Logout</a></li>
                     </ul>
                   </div>
@@ -48,10 +47,8 @@
         <div class="class-container mt-4 w-50 m-auto">
             <h3 class="text-center">Our Classes</h3>
             <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-slideup slider-item-first-visible">
-                <ul id="class-container" class="slider-container">
-                    <li class="class-card p-3 p-xl-5 text-light slide-visible" id="class-card" style="background-color: black">
-                        
-                    </li>
+                <ul id="class-container" class="slider-container gap-2">
+                    
                     
                 </ul>
             
@@ -132,6 +129,7 @@
         <p class="text-center mt-3 text-white"><small>Copyright © Fitness Mania. All Rights Reserved</small></p>
     </footer>
     <script src="index.js"></script>
+    <script src="./auth.js"></script>
     <script src="logout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

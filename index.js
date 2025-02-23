@@ -1,11 +1,11 @@
 const loadAllClasses=()=>{
-    fetch("https://final-backend-phi.vercel.app/class/classes/")
+    fetch("https://gymbackend-flax.vercel.app/class/classes/")
     .then(res=>res.json())
     .then(data=>DisplayClasses(data.results))
     .catch((err) => console.log(err))
 }
 const loadAllInstructors=()=>{
-    fetch("https://final-backend-phi.vercel.app/class/instructors/")
+    fetch("https://gymbackend-flax.vercel.app/class/instructors/")
     .then(res=>res.json())
     .then(data=>DisplayInstructors(data.results))
     .catch((err) => console.log(err))
@@ -16,11 +16,12 @@ const DisplayClasses=(classes)=>{
     console.log(classes)
     classes.forEach(session=> {
         const parent=document.getElementById("class-container")
-        const child=document.getElementById("class-card")
-        child.innerHTML=`
+        const li=document.createElement("li")
+        li.classList.add("class-card","p-3","p-xl-5","text-light","slide-visible")
+        li.innerHTML=`
             <h3 class="text-uppercase h5">${session.name}</h3>
-            <p>${session.topic}</p>
-            <p>${session.description.slice(0,50)}</p>
+            <p>${session.topic.name}</p>
+            <p>${session.description.slice(0,50)}...</p>
             <p>
             ${session.time.map((item)=>{
                 return `<button class="btn btn-outline-light text-white" style="background-color: black">${item}</button>`
@@ -29,7 +30,7 @@ const DisplayClasses=(classes)=>{
             <button class="btn btn-outline-light"><a class="text-decoration-none text-white" target="_blank" href="class_details.html?ClassId=${session.id}">Details</a></button>
 
         `
-        parent.appendChild(child)
+        parent.appendChild(li)
     })
 }
 const DisplayInstructors=(instructors)=>{
@@ -39,7 +40,7 @@ const DisplayInstructors=(instructors)=>{
         const li=document.createElement("li")
         li.innerHTML=`
             <div class="card" style="width: 18rem;">
-                <img src="${instructor.image}" class="card-img-top" alt="...">
+                <img src="${instructor.image}" class="card-img-top instructor-img object-fit-cover" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${instructor.name}</h5>
                     <p class="card-text">${instructor.bio.slice(0,50)}...</p>

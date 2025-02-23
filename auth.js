@@ -1,3 +1,18 @@
+const token = localStorage.getItem("token")
+const LoginLink=document.getElementById("login-link")
+const RegisterLink=document.getElementById("register-link")
+const DropdownLink=document.getElementById("dropdown-link")
+
+if (token){
+    LoginLink.style.display='none'
+    RegisterLink.style.display='none'
+    DropdownLink.style.display='inline'
+}
+else{
+    LoginLink.style.display='inline'
+    RegisterLink.style.display='inline'
+    DropdownLink.style.display='none'
+}
 const handleMemberRegistration=(event)=>{
     event.preventDefault()
     const formData = new FormData();
@@ -14,7 +29,7 @@ const handleMemberRegistration=(event)=>{
     formData.append("height", getValue("height"));
     
     // Sending FormData without setting headers
-    fetch("https://final-backend-phi.vercel.app/member/register/", {
+    fetch("https://gymbackend-flax.vercel.app/member/register/", {
         method: "POST",
         body: formData,   // Sending as FormData
     })
@@ -70,7 +85,7 @@ const handleMemberLogin=(event)=>{
     event.preventDefault()
     const username=getValue("login-username")
     const password=getValue("login-password")
-    fetch("https://final-backend-phi.vercel.app/staff/login/",{
+    fetch("https://gymbackend-flax.vercel.app/staff/login/",{
         method: "POST",
         headers: {"content-type": "application/json"},
         body:JSON.stringify({username,password}),

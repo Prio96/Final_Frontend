@@ -1,8 +1,8 @@
 const handlelogOut=()=>{
     console.log("Logging out...")
     const token=localStorage.getItem("token")
-    fetch("https://final-backend-phi.vercel.app/staff/logout/",{
-        method: "POST",
+    fetch("https://gymbackend-flax.vercel.app/staff/logout/",{
+        method: "GET",
         headers:{
             "Authorization": `Token ${token}`,
         }

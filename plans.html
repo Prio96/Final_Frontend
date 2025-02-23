@@ -14,48 +14,81 @@
     <link rel="stylesheet" href="footer.css">
 </head>
 <body>
-    <nav class="nav-secondary d-flex justify-content-around align-items-center p-4">
-        <div class="logo-container d-flex align-items-center gap-2">
-            <h3 class="text-white">Fitness Mania</h3>
-        </div>
-        <div class="menu-container d-flex gap-3">
-            <li class="menu"><a class="nav-heads" href="index.html">Home</a></li>
-            <li class="menu"><a class="nav-heads" href="plans.html">Plans</a></li>
-            <li class="menu"><a class="nav-heads" href="login.html">Login</a></li>
-        </div>
-    </nav>
-    <div class="all-plans w-50 m-auto mt-5 d-flex justify-content-center gap-5">
-        <div class="card plan-card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        <div class="card plan-card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-        <div class="card plan-card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
+  <nav class="nav-secondary d-flex justify-content-around align-items-center p-4">
+    <div class="logo-container d-flex align-items-center gap-2">
+        
+        <h3 class="mt-1" style="color:whitesmoke">Fitness Mania</h3>
+    </div>
+    <div class="menu-container d-flex gap-3">
+        <li class="menu"><a class="nav-heads" href="index.html">Home</a></li>
+        <li class="menu"><a class="nav-heads" href="plans.html">Plans</a></li>
+        <li class="menu" id="register-link"><a class="nav-heads" href="registration.html">Register</a></li>
+        <li class="menu" id="login-link"><a class="nav-heads" href="login.html">Login</a></li>
+        <div class="dropdown" id="dropdown-link">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item active" href="profile.html">Profile</a></li>
+              <li onclick="handlelogOut()"><a class="dropdown-item">Logout</a></li>
+            </ul>
           </div>
     </div>
+</nav>
+    <main>
+      <p id="message" class="text-center"></p>
+      <div class="all-plans w-50 m-auto mt-5 d-flex justify-content-center gap-5" id="all-plans">
+        <!-- <div class="card plan-card" style="width: 18rem;" id="plan-card">
+            <div class="card-body">
+              <h5 class="card-title">Plan title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Plan price</h6>
+              <a href="#" class="card-link Subscribe-btn btn btn-dark">Subscribe</a>
+            </div>
+          </div> -->
+    </div>
+    <div class="text-center">
+      <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="Update-plan-btn btn btn-dark m-auto" onclick="OpenUpdateModal()">Update Plan</button>
+    </div>
+    
+    <!-- <div id="update-modal" class="modal modal-dialog modal-dialog-centered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-content">
+          <span class="close-btn" onclick="CloseUpdateModal()">&times;</span>
+          <h3>Update Your Plan</h3>
+          <ul id="plan-options" class="form-control">
+          
+          </ul>
+          <button id="confirm-update" class="btn btn-dark" onclick="UpdatePlan()">Update Plan</button>
+      </div>
+  </div> -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul id="plan-options" class="form-control list-unstyled">
+
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="confirm-update" class="btn btn-dark" onclick="UpdatePlan()">Update Plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </main>
+    
     <footer class="p-5">
       <p class="text-center text-white mt-3"><small>Copyright © Fitness Mania. All Rights Reserved</small></p>
     </footer>
   <script src="plans.js"></script>
+  <script src="auth.js"></script>
+  <script src="logout.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

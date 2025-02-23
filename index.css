@@ -11,4 +11,10 @@ header{
 .banner-text{
     margin-top: 10vh !important;
 }
+.class-card{
+    background-color: black;
+}
+.instructor-img{
+    height:30vh
+}
 
