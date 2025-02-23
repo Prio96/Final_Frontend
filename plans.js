@@ -32,16 +32,17 @@ const SubscribePlan=(planId)=>{
     fetch("https://gymbackend-flax.vercel.app/subscription/subscribe/",{
         method:'POST',
         headers:{
-            'Authorization':'Token ${token}',
+            'Authorization':`Token ${token}`,
             "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({plan:planId})
     })
     .then(res=>res.json())
     .then(data=>{
         console.log("Subscription successful:",data)
         alert("Successfully subscribed to the plan!")
-        window.location.href="index.html"
+        // window.location.href="index.html"
     })
     .catch(error=>{
         console.error("Error subscribing:", error)
@@ -68,19 +69,21 @@ const OpenUpdateModal=()=>{
             })
         parent.appendChild(li)
     })
-    .catch(error=>console.error("Error fetching plans:", error))
+    
     })
+    .catch(error=>console.error("Error fetching plans:", error))
 }
 const UpdatePlan=()=>{
-    const selectedPlan=document.querySelector("#plan-list li.selected")
+    const selectedPlan=document.querySelector("#plan-options li.selected")
     const planId=selectedPlan.value
 
     fetch("https://gymbackend-flax.vercel.app/subscription/update-subscription/", {
         method: "PUT",
         headers: {
-            "Authorization": `Token ${localStorage.getItem("token")}`,
+            "Authorization": `Token ${token}`,
             "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({ plan: planId })
     })
     .then(res=>res.json())
@@ -96,3 +99,5 @@ const CloseUpdateModal = () => {
     const modal = document.getElementById("update-modal");
     modal.style.display = "none"; 
 };
+
+// https://gymbackend-flax.vercel.app/

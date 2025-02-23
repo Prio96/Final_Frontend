@@ -1,8 +1,9 @@
+// const token=localStorage.getItem("token")
 const loadProfile = () => {
     fetch("https://gymbackend-flax.vercel.app/member/member_profile/", {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            "Authorization": `Token ${token}`,
             "Content-Type": "application/json"
         }
     })
