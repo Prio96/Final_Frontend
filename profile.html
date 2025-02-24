@@ -35,20 +35,26 @@
               </div>
         </div>
     </nav>
-    <div class="profile-container">
+    <div class="profile-container w-75 m-auto d-flex justify-content-around align-items-center mt-3">
+        <div class="profile-details">
+            <h2 id="member-name"></h2>
+            <p id="member-mobile"></p>
+            <p id="member-gender"></p>
+            <p id="member-weight"></p>
+            <p id="member-height"></p>
+            <p id="date-joined"></p>
+        </div>
         <img id="profile-image" src="" alt="Profile Picture">
-        <h2 id="member-name"></h2>
-        <p id="member-mobile"></p>
-        <p id="member-gender"></p>
-        <p id="member-weight"></p>
-        <p id="member-height"></p>
-        <p id="date-joined"></p>
-    
+        
+    </div>
+    <div class="booking-history">
         <h3>Booking History</h3>
-        <ul id="booking-history">
+        <ul id="booking-history" class="list-unstyled">
 
         </ul>
     </div>
+        
+    
     <script src="./index.js"></script>
     <script src="auth.js"></script>
     <script src="logout.js"></script>

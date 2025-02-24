@@ -1,3 +1,7 @@
+const truncateWords = (text, numWords) => {
+    const words = text.split(" ")
+    return words.length > numWords ? words.slice(0, numWords).join(" ") + "..." : text
+}
 const loadAllClasses=()=>{
     fetch("https://gymbackend-flax.vercel.app/class/classes/")
     .then(res=>res.json())
@@ -21,7 +25,7 @@ const DisplayClasses=(classes)=>{
         li.innerHTML=`
             <h3 class="text-uppercase h5">${session.name}</h3>
             <p>${session.topic.name}</p>
-            <p>${session.description.slice(0,50)}...</p>
+            <p>${truncateWords(session.description, 10)}</p>
             <p>
             ${session.time.map((item)=>{
                 return `<button class="btn btn-outline-light text-white" style="background-color: black">${item}</button>`
