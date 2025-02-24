@@ -40,8 +40,14 @@ const SubscribePlan=(planId)=>{
     })
     .then(res=>res.json())
     .then(data=>{
-        console.log("Subscription successful:",data)
-        alert("Successfully subscribed to the plan!")
+        if(data.error){
+            console.error("Error subscribing:", data.error)
+        }
+        else{
+            console.log("Subscription successful:",data)
+            alert("Successfully subscribed to the plan!")
+        }
+        
         // window.location.href="index.html"
     })
     .catch(error=>{
@@ -65,7 +71,6 @@ const OpenUpdateModal=()=>{
             li.addEventListener("click", function() {
                 document.querySelectorAll("#plan-options li").forEach(item => item.classList.remove("selected"));
                 this.classList.add("selected");
-                
             })
         parent.appendChild(li)
     })
@@ -88,10 +93,14 @@ const UpdatePlan=()=>{
     })
     .then(res=>res.json())
     .then(data => {
-        console.log("Subscription updated:", data)
-        alert("Plan updated successfully!")
-        document.getElementById("update-modal").style.display = "none"
-    
+        if(data.error){
+            console.error("Error updating plan:", data.error);
+        }
+        else{
+            console.log("Subscription updated:", data)
+            alert("Plan updated successfully!")
+            document.getElementById("update-modal").style.display = "none"
+        }
     })
     .catch(error => console.error("Error updating plan:", error))
 }

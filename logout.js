@@ -1,11 +1,12 @@
 const handlelogOut=()=>{
     console.log("Logging out...")
     const token=localStorage.getItem("token")
-    fetch("https://gymbackend-flax.vercel.app/staff/logout/",{
+    fetch("http://127.0.0.1:8000/staff/logout/",{
         method: "GET",
         headers:{
             "Authorization": `Token ${token}`,
-        }
+        },
+        credentials:"include"
     })
     .then(res=>res.json())
     .then(data=>{
