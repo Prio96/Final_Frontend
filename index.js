@@ -31,7 +31,7 @@ const DisplayClasses=(classes)=>{
                 return `<button class="btn btn-outline-light text-white" style="background-color: black">${item}</button>`
             }).join(" ")}
             </p>
-            <button class="btn btn-outline-light"><a class="text-decoration-none text-white" target="_blank" href="class_details.html?ClassId=${session.id}">Details</a></button>
+            <button class="btn btn-outline-light"><a class="text-decoration-none text-white detail-btn" target="_blank" href="class_details.html?ClassId=${session.id}">Details</a></button>
 
         `
         parent.appendChild(li)

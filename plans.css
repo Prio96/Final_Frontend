@@ -14,35 +14,5 @@ main{
     color: white;
     border-radius: 10%;
 }
-/* Modal Background - Covers Full Screen & Darkens */
-/* .modal {
-    margin: auto;
-    width: 100vw; 
-    height: 100vh; 
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-/* }  */
 
-/* Modal content box */
-/* .modal-content {
-    background: white;
-    padding: 20px;
-    width: 30%;
-    min-width: 320px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    position: relative;
-} */
-
-/* Close button */
-/* .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-} */ 
 

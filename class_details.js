@@ -3,7 +3,10 @@ const getparams = () => {
     fetch(`https://gymbackend-flax.vercel.app/class/classes/${param}`)
         .then(res => res.json())
         .then(data => displayClassDetails(data))
-
+        .catch(error=>{
+            console.error("Error:", error)
+            ShowCatchErrorMessage(error)
+        })
 }
 
 const displayClassDetails = (session) => {
@@ -48,13 +51,56 @@ const bookClass = (className) => {
             "Authorization": `Token ${token}`,
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ class_session: className })  // Send only class name
+        credentials: "include", 
+        body: JSON.stringify({ class_session: className })
+        
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error("Error:", error));
-};
+    .then(res=>res.json().then(data=>({status:res.status, body:data})))
+    .then(({ status, body }) => {
+        if (body.error) {
+            console.log("Error booking class:",body.error)
+            ShowErrorMessage(body)
+        } 
+        else {
+            console.log(body.success)
+            console.log(body.data)
+            ShowSuccessMessage(body)
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        ShowCatchErrorMessage(error)
+    });
+        
+}
 
+// const ShowSuccessMessage=(body)=>{
+//     const ErrorElement=document.getElementById("error-msg")
+//     const SuccessElement=document.getElementById("success-msg")
+//     ErrorElement.innerText=""
+//     SuccessElement.innerText=body.success
+//     setTimeout(() => {
+//         SuccessElement.innerText=""
+//     }, 3000); 
+// }
+
+// const ShowErrorMessage=(body)=>{
+//     const ErrorElement=document.getElementById("error-msg")
+//     const SuccessElement=document.getElementById("success-msg")
+//     ErrorElement.innerText=body.error
+//     SuccessElement.innerText=""
+//     setTimeout(() => {
+//         ErrorElement.innerText=""
+//     }, 3000);
+// }
+
+// const ShowCatchErrorMessage=(error)=>{
+//     document.getElementById("error-msg").innerHTML=`Unexpected error occured: ${error}`
+//     document.getElementById("success-msg").innerText=""
+//     setTimeout(() => {
+//         document.getElementById("error-msg").innerText=""
+//     }, 3000)
+// }
 // Example button for booking a class
 
 

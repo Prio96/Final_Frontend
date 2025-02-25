@@ -1,13 +1,41 @@
-const loadAllPlans=()=>{
+const LoadAllPlans=()=>{
     fetch('https://gymbackend-flax.vercel.app/subscription/plans/')
     .then(res=>res.json())
     .then(data=>{
         console.log(data.results)
         DisplayAllPlans(data.results)
     })
-    .catch(error=>console.error("Error fetching plans:", error))
+    .catch(error=>{
+        console.error("Error fetching plans:", error)
+        ShowCatchErrorMessage(error)
+    })
 }
-loadAllPlans()
+const LoadCurrentPlan=()=>{
+    fetch("http://127.0.0.1:8000/subscription/subscribe/",{
+        method:'GET',
+        headers:{
+            'Authorization':`Token ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if (data.error){
+            console.log(data.error)
+        }
+        if(data.success){
+            console.log(data.success)
+            document.getElementById("current-plan").innerHTML=`Current Plan: <b>${data.data.plan}</b>`
+        }
+    })
+    .catch(error=>{
+        console.error("Error fetching current subscription:",error)
+        ShowCatchErrorMessage(error)
+    })
+}
+LoadCurrentPlan()
+LoadAllPlans()
 const DisplayAllPlans=(plans)=>{
     const parent=document.getElementById("all-plans")
     plans.forEach(plan=>{
@@ -49,7 +77,7 @@ const SubscribePlan=(planId)=>{
     })
     .catch(error=>{
         console.error("Error subscribing:", error)
-        ShowErrorMessage()
+        ShowCatchErrorMessage(error) 
     })
 }
 const OpenUpdateModal=()=>{
@@ -72,7 +100,11 @@ const OpenUpdateModal=()=>{
     })
     
     })
-    .catch(error=>console.error("Error fetching plans:", error))
+    .catch(error=>{
+        console.error("Error fetching plans:", error)
+        CloseModal()
+        ShowCatchErrorMessage(error)
+    })
 }
 const UpdatePlan=()=>{
     const selectedPlan=document.querySelector("#plan-options li.selected")
@@ -95,15 +127,19 @@ const UpdatePlan=()=>{
             ShowErrorMessage(body)
         }
         else{
-            console.log("Subscription updated:", body.success)
+            console.log(body.success)
+            console.log("Details:",body.data)
             CloseModal()
             ShowSuccessMessage(body)
+            setTimeout(() => {
+                window.location.reload()
+            }, 3000); 
         }
     })
     .catch(error =>{
         CloseModal()
         console.error("Error updating plan:", error)
-        ShowErrorMessage()
+        ShowCatchErrorMessage(error)
     })  
 }
 
@@ -113,35 +149,31 @@ const CloseModal=()=>{
     bootstrapModal.hide();
 }
 
-const ShowSuccessMessage=(body)=>{
-    const ErrorElement=document.getElementById("error-msg")
-    const SuccessElement=document.getElementById("success-msg")
-    ErrorElement.innerText=""
-    SuccessElement.innerText=body.success
-}
+// const ShowSuccessMessage=(body)=>{
+//     const ErrorElement=document.getElementById("error-msg")
+//     const SuccessElement=document.getElementById("success-msg")
+//     ErrorElement.innerText=""
+//     SuccessElement.innerText=body.success
+//     setTimeout(() => {
+//         SuccessElement.innerText=""
+//     }, 3000) 
+// }
 
-const ShowErrorMessage=(body)=>{
-    const ErrorElement=document.getElementById("error-msg")
-    const SuccessElement=document.getElementById("success-msg")
-    ErrorElement.innerText=body.error
-    SuccessElement.innerText=""
-}
-// .then(res=>res.json().then(data=>({status:res.status, body:data})))
-//     .then(({status,body})=>{
-//         const ErrorElement=document.getElementById("error-msg")
-//         const SuccessElement=document.getElementById("success-msg")
-//         if(body.error){
-//             ErrorElement.innerText=body.error
-//             SuccessElement.innerText=""
-//         }
-//         else{
-//             SuccessElement.innerText=body.success
-//             ErrorElement.innerText=""
-//         }
-//     })
-// const CloseUpdateModal = () => {
-//     const modal = document.getElementById("update-modal");
-//     modal.style.display = "none"; 
-// };
+// const ShowErrorMessage=(body)=>{
+//     const ErrorElement=document.getElementById("error-msg")
+//     const SuccessElement=document.getElementById("success-msg")
+//     ErrorElement.innerText=body.error
+//     SuccessElement.innerText=""
+//     setTimeout(() => {
+//         ErrorElement.innerText=""
+//     }, 3000) 
+// }
 
-// https://gymbackend-flax.vercel.app/
+// const ShowCatchErrorMessage=(error)=>{
+//     document.getElementById("error-msg").innerHTML=`Unexpected error occured: ${error}`
+//     document.getElementById("success-msg").innerText=""
+//     setTimeout(() => {
+//         document.getElementById("error-msg").innerText=""
+//     }, 3000)
+// }
+

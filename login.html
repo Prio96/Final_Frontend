@@ -25,21 +25,21 @@
             <li class="menu"><a class="nav-heads" href="index.html">Home</a></li>
             <li class="menu"><a class="nav-heads" href="plans.html">Plans</a></li>
             <li class="menu" id="register-link"><a class="nav-heads" href="registration.html">Register</a></li>
-            <li class="menu" id="login-link"><a class="nav-heads" href="login.html">Login</a></li>
             <div class="dropdown" id="dropdown-link">
                 <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                   Profile
                 </button>
                 <ul class="dropdown-menu text-white" style="background-color: black;" aria-labelledby="dropdownMenuButton2">
-                  <li><a class="dropdown-item text-white" href="profile.html">Profile</a></li>
-                  <li onclick="handlelogOut()"><a class="dropdown-item text-white">Logout</a></li>
+                  <li><a class="dropdown-item text-white nav-dropdown" href="profile.html">Profile</a></li>
+                  <li onclick="handlelogOut()"><a class="dropdown-item text-white nav-dropdown">Logout</a></li>
                 </ul>
               </div>
         </div>
     </nav>
     <main>
         <div class="login-container p-5">
-
+            <p id="error-msg" class="text-center text-danger mt-4"></p>
+            <p id="success-msg" class="text-center text-success mt-4"></p>
             <h1 class="title text-start text-white">Please Login</h1>
             <form action="" onsubmit="handleMemberLogin(event)">
                 <input id="login-username"type="text" class="input" placeholder="Username" required><br>

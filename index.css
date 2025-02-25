@@ -17,4 +17,7 @@ header{
 .instructor-img{
     height:30vh
 }
+.detail-btn:hover{
+    color: black !important
+}
 
