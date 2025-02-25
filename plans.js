@@ -38,25 +38,21 @@ const SubscribePlan=(planId)=>{
         credentials: "include",
         body: JSON.stringify({plan:planId})
     })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.error){
-            console.error("Error subscribing:", data.error)
+    .then(res=>res.json().then(data=>({status:res.status, body:data})))
+    .then(({status,body})=>{
+        if(body.error){
+            ShowErrorMessage(body)
         }
         else{
-            console.log("Subscription successful:",data)
-            alert("Successfully subscribed to the plan!")
+            ShowSuccessMessage(body)
         }
-        
-        // window.location.href="index.html"
     })
     .catch(error=>{
         console.error("Error subscribing:", error)
-        alert("Failed to subscribe. Please try again.")
+        ShowErrorMessage()
     })
 }
 const OpenUpdateModal=()=>{
-    const modal=document.getElementById("exampleModalCenter")
     $("#exampleModalCenter").modal("show")
     document.getElementById("plan-options").innerHTML=``
     fetch("https://gymbackend-flax.vercel.app/subscription/plans/")
@@ -91,22 +87,61 @@ const UpdatePlan=()=>{
         credentials: "include",
         body: JSON.stringify({ plan: planId })
     })
-    .then(res=>res.json())
-    .then(data => {
-        if(data.error){
-            console.error("Error updating plan:", data.error);
+    .then(res=>res.json().then(data=>({status:res.status, body:data})))
+    .then(({status,body}) => {
+        if(body.error){
+            console.log("Error updating plan:", body.error)
+            CloseModal()
+            ShowErrorMessage(body)
         }
         else{
-            console.log("Subscription updated:", data)
-            alert("Plan updated successfully!")
-            document.getElementById("update-modal").style.display = "none"
+            console.log("Subscription updated:", body.success)
+            CloseModal()
+            ShowSuccessMessage(body)
         }
     })
-    .catch(error => console.error("Error updating plan:", error))
+    .catch(error =>{
+        CloseModal()
+        console.error("Error updating plan:", error)
+        ShowErrorMessage()
+    })  
 }
-const CloseUpdateModal = () => {
-    const modal = document.getElementById("update-modal");
-    modal.style.display = "none"; 
-};
+
+const CloseModal=()=>{
+    const modal = document.getElementById("exampleModalCenter");
+    const bootstrapModal = bootstrap.Modal.getInstance(modal); 
+    bootstrapModal.hide();
+}
+
+const ShowSuccessMessage=(body)=>{
+    const ErrorElement=document.getElementById("error-msg")
+    const SuccessElement=document.getElementById("success-msg")
+    ErrorElement.innerText=""
+    SuccessElement.innerText=body.success
+}
+
+const ShowErrorMessage=(body)=>{
+    const ErrorElement=document.getElementById("error-msg")
+    const SuccessElement=document.getElementById("success-msg")
+    ErrorElement.innerText=body.error
+    SuccessElement.innerText=""
+}
+// .then(res=>res.json().then(data=>({status:res.status, body:data})))
+//     .then(({status,body})=>{
+//         const ErrorElement=document.getElementById("error-msg")
+//         const SuccessElement=document.getElementById("success-msg")
+//         if(body.error){
+//             ErrorElement.innerText=body.error
+//             SuccessElement.innerText=""
+//         }
+//         else{
+//             SuccessElement.innerText=body.success
+//             ErrorElement.innerText=""
+//         }
+//     })
+// const CloseUpdateModal = () => {
+//     const modal = document.getElementById("update-modal");
+//     modal.style.display = "none"; 
+// };
 
 // https://gymbackend-flax.vercel.app/

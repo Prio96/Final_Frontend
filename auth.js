@@ -8,6 +8,7 @@ if(token && user_id){
 else{
     alert("Token and user id not found")
 }
+const JoinUsButton=document.getElementById("join-us-btn")
 const LoginLink=document.getElementById("login-link")
 const RegisterLink=document.getElementById("register-link")
 const DropdownLink=document.getElementById("dropdown-link")
@@ -16,11 +17,17 @@ if (token){
     LoginLink.style.display='none'
     RegisterLink.style.display='none'
     DropdownLink.style.display='inline'
+    if(JoinUsButton){
+        JoinUsButton.style.display='none'
+    }
 }
 else{
     LoginLink.style.display='inline'
     RegisterLink.style.display='inline'
     DropdownLink.style.display='none'
+    if(JoinUsButton){
+        JoinUsButton.style.display='inline'
+    }
 }
 const handleMemberRegistration=(event)=>{
     event.preventDefault()

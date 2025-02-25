@@ -10,30 +10,38 @@ const loadProfile = () => {
     .then(res=>res.json())
     .then(data=>{
         if (data.error) {
-            console.error(data.error);
-            return;
+            console.error(data.error)
+            return
         }
 
         // Display member details
         console.log(data)
-        document.getElementById("profile-image").src = data.member.image;
-        document.getElementById("member-name").innerText = `${data.member.user.first_name} ${data.member.user.last_name}`;
-        document.getElementById("member-mobile").innerText = `Mobile: ${data.member.mobile_no}`;
-        document.getElementById("member-gender").innerText = `Gender: ${data.member.gender}`;
-        document.getElementById("member-weight").innerText = `Weight: ${data.member.weight} kg`;
-        document.getElementById("member-height").innerText = `Height: ${data.member.height} cm`;
-        document.getElementById("date-joined").innerText = `Joined on: ${data.member.date_joined}`;
+        document.getElementById("profile-image").src = data.member.image
+        document.getElementById("member-name").innerText = `${data.member.user.first_name} ${data.member.user.last_name}`
+        document.getElementById("member-mobile").innerHTML = `<b>Mobile:</b> ${data.member.mobile_no}`
+        document.getElementById("member-gender").innerHTML = `<b>Gender:</b> ${data.member.gender}`
+        document.getElementById("member-weight").innerHTML = `<b>Weight:</b> ${data.member.weight} kg`
+        document.getElementById("member-height").innerHTML = `<b>Height:</b> ${data.member.height} cm`
+        document.getElementById("date-joined").innerHTML = `<b>Joined on:</b> ${data.member.date_joined}`
 
         // Display booking history
-        const bookingList = document.getElementById("booking-history");
-        bookingList.innerHTML = "";
+        const BookingList = document.getElementById("booking-history")
+        BookingList.innerHTML = ""
+        let count=0
         data.bookings.forEach(booking => {
-            const li = document.createElement("li");
-            li.innerText = `${booking.class_session} - ${booking.booking_date}`;
-            bookingList.appendChild(li);
-        });
+            count=count+1
+            const tr= document.createElement("tr")
+            tr.innerHTML = `
+                <th scope="row" class="text-center">${count}</th>
+                <td class="text-center">${booking.id}</td>
+                <td class="text-center">${booking.class_session}</td>
+                <td class="text-center">${booking.booking_date}</td>
+            `
+            
+            BookingList.appendChild(tr)
+        })
     })
-    .catch(error => console.error("Error fetching profile:", error));
-};
+    .catch(error => console.error("Error fetching profile:", error))
+}
 
 loadProfile()

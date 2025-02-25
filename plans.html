@@ -25,18 +25,19 @@
         <li class="menu" id="register-link"><a class="nav-heads" href="registration.html">Register</a></li>
         <li class="menu" id="login-link"><a class="nav-heads" href="login.html">Login</a></li>
         <div class="dropdown" id="dropdown-link">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-              Profile
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-              <li><a class="dropdown-item active" href="profile.html">Profile</a></li>
-              <li onclick="handlelogOut()"><a class="dropdown-item">Logout</a></li>
-            </ul>
-          </div>
+          <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </button>
+          <ul class="dropdown-menu text-white" style="background-color: black;" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item text-white" href="profile.html">Profile</a></li>
+            <li onclick="handlelogOut()"><a class="dropdown-item text-white">Logout</a></li>
+          </ul>
+        </div>
     </div>
 </nav>
     <main>
-      <p id="message" class="text-center"></p>
+      <p id="error-msg" class="text-center text-danger mt-4"></p>
+      <p id="success-msg" class="text-center text-success mt-4"></p>
       <div class="all-plans w-50 m-auto mt-5 d-flex justify-content-center gap-5" id="all-plans">
         <!-- <div class="card plan-card" style="width: 18rem;" id="plan-card">
             <div class="card-body">
@@ -47,7 +48,7 @@
           </div> -->
     </div>
     <div class="text-center">
-      <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="Update-plan-btn btn btn-dark m-auto" onclick="OpenUpdateModal()">Update Plan</button>
+      <button type="button" data-toggle="modal"  class="Update-plan-btn btn btn-dark m-auto" onclick="OpenUpdateModal()">Update Plan</button>
     </div>
     
     <!-- <div id="update-modal" class="modal modal-dialog modal-dialog-centered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -64,7 +65,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Change Plan</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
