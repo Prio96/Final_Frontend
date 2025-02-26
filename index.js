@@ -42,6 +42,7 @@ const DisplayInstructors=(instructors)=>{
     instructors.forEach(instructor=>{
         const parent=document.getElementById("instructor-container")
         const li=document.createElement("li")
+        li.classList.add("slide-visible")
         li.innerHTML=`
             <div class="card" id="instructor-card">
                 <img src="${instructor.image}" class="card-img-top instructor-img object-fit-cover" alt="...">
