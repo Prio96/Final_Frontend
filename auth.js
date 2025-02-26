@@ -14,9 +14,15 @@ const RegisterLink=document.getElementById("register-link")
 const DropdownLink=document.getElementById("dropdown-link")
 
 if (token){
-    LoginLink.style.display='none'
-    RegisterLink.style.display='none'
-    DropdownLink.style.display='inline'
+    if(LoginLink){
+        LoginLink.style.display='none'
+    }
+    if(RegisterLink){
+        RegisterLink.style.display='none'
+    }
+    if(DropdownLink){
+        DropdownLink.style.display='inline'
+    }
     if(JoinUsButton){
         JoinUsButton.style.display='none'
     }
@@ -25,8 +31,12 @@ else{
     if(LoginLink){
         LoginLink.style.display='inline'
     }
-    RegisterLink.style.display='inline'
-    DropdownLink.style.display='none'
+    if(RegisterLink){
+        RegisterLink.style.display='inline'
+    }
+    if(DropdownLink){
+        DropdownLink.style.display='none'
+    }
     if(JoinUsButton){
         JoinUsButton.style.display='inline'
     }
@@ -69,7 +79,7 @@ const handleMemberRegistration=(event)=>{
         });
     }
     else{
-        document.getElementById("error").innerText = "Passwords do not match"
+        document.getElementById("error-msg").innerText="Passwords do not match"
     }
 
 }

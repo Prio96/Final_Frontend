@@ -11,7 +11,7 @@ const LoadAllPlans=()=>{
     })
 }
 const LoadCurrentPlan=()=>{
-    fetch("http://127.0.0.1:8000/subscription/subscribe/",{
+    fetch("https://gymbackend-flax.vercel.app/subscription/subscribe/",{
         method:'GET',
         headers:{
             'Authorization':`Token ${localStorage.getItem("token")}`,
