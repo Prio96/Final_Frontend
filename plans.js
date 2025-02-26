@@ -149,31 +149,4 @@ const CloseModal=()=>{
     bootstrapModal.hide();
 }
 
-// const ShowSuccessMessage=(body)=>{
-//     const ErrorElement=document.getElementById("error-msg")
-//     const SuccessElement=document.getElementById("success-msg")
-//     ErrorElement.innerText=""
-//     SuccessElement.innerText=body.success
-//     setTimeout(() => {
-//         SuccessElement.innerText=""
-//     }, 3000) 
-// }
-
-// const ShowErrorMessage=(body)=>{
-//     const ErrorElement=document.getElementById("error-msg")
-//     const SuccessElement=document.getElementById("success-msg")
-//     ErrorElement.innerText=body.error
-//     SuccessElement.innerText=""
-//     setTimeout(() => {
-//         ErrorElement.innerText=""
-//     }, 3000) 
-// }
-
-// const ShowCatchErrorMessage=(error)=>{
-//     document.getElementById("error-msg").innerHTML=`Unexpected error occured: ${error}`
-//     document.getElementById("success-msg").innerText=""
-//     setTimeout(() => {
-//         document.getElementById("error-msg").innerText=""
-//     }, 3000)
-// }
 

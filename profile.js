@@ -1,4 +1,3 @@
-// const token=localStorage.getItem("token")
 const loadProfile = () => {
     fetch("https://gymbackend-flax.vercel.app/member/member_profile/", {
         method: "GET",
@@ -25,10 +24,20 @@ const loadProfile = () => {
         document.getElementById("date-joined").innerHTML = `<b>Joined on:</b> ${data.member.date_joined}`
 
         // Display booking history
-        const BookingList = document.getElementById("booking-history")
-        BookingList.innerHTML = ""
-        let count=0
-        data.bookings.forEach(booking => {
+        const BookingHistoryContainer=document.getElementById("booking-history-container")
+        const BookingTable=document.getElementById("table")
+        const BookingList=document.getElementById("booking-history")
+        BookingList.innerHTML=""
+        if(data.bookings.length===0){
+            BookingTable.style.display='none'
+            const EmptyMessage=document.createElement("p")
+            EmptyMessage.classList.add("text-center","text-warning","mt-3")
+            EmptyMessage.innerText="The booking history is empty"
+            BookingHistoryContainer.appendChild(EmptyMessage)
+        }
+        else{
+            let count=0
+            data.bookings.forEach(booking => {
             count=count+1
             const tr= document.createElement("tr")
             tr.innerHTML = `
@@ -37,9 +46,9 @@ const loadProfile = () => {
                 <td class="text-center">${booking.class_session}</td>
                 <td class="text-center">${booking.booking_date}</td>
             `
-            
             BookingList.appendChild(tr)
         })
+        }
     })
     .catch(error => console.error("Error fetching profile:", error))
 }
