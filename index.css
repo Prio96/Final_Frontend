@@ -15,9 +15,13 @@ header{
     background-color: black;
 }
 .instructor-img{
-    height:30vh
+    height:30vh;
+    width:15vw
 }
 .detail-btn:hover{
     color: black !important
+}
+#instructor-card{
+    width:15vw
 }
 

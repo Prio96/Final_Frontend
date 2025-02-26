@@ -43,7 +43,7 @@ const DisplayInstructors=(instructors)=>{
         const parent=document.getElementById("instructor-container")
         const li=document.createElement("li")
         li.innerHTML=`
-            <div class="card" style="width: 18rem;">
+            <div class="card" id="instructor-card">
                 <img src="${instructor.image}" class="card-img-top instructor-img object-fit-cover" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${instructor.name}</h5>
