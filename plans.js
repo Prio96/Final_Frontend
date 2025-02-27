@@ -68,8 +68,17 @@ const SubscribePlan=(planId)=>{
     })
     .then(res=>res.json().then(data=>({status:res.status,body:data})))
     .then(({status,body})=>{
-        if(status===403){
+        if(status===401){
+            document.getElementById("error-msg").innerText="Please log in and try again"
+            setTimeout(()=>{
+                document.getElementById("error-msg").innerText=""
+            }, 2000)
+        }
+        else if(status===403){
             document.getElementById("error-msg").innerText=body.detail
+            setTimeout(() => {
+                document.getElementById("error-msg").innerText=""
+            }, 2000)
         }
         else if(body.error){
             ShowErrorMessage(body)
@@ -78,7 +87,7 @@ const SubscribePlan=(planId)=>{
             ShowSuccessMessage(body)
             setTimeout(() => {
                 window.location.reload()
-            }, 2000);
+            }, 2000)
         }
     })
     .catch(error=>{
@@ -140,9 +149,19 @@ const UpdatePlan=()=>{
     })
     .then(res=>res.json().then(data=>({status:res.status,body:data})))
     .then(({status,body})=>{
-        if(status===403){
+        if(status===401){
+            CloseModal()
+            document.getElementById("error-msg").innerText="Please log in and try again"
+            setTimeout(()=>{
+                document.getElementById("error-msg").innerText=""
+            }, 2000)
+        }
+        else if(status===403){
             CloseModal()
             document.getElementById("error-msg").innerText=body.detail
+            setTimeout(() => {
+                document.getElementById("error-msg").innerText=""
+            }, 2000)
         }
         else if(body.error){
             console.log("Error updating plan:", body.error)
@@ -156,7 +175,7 @@ const UpdatePlan=()=>{
             ShowSuccessMessage(body)
             setTimeout(() => {
                 window.location.reload()
-            }, 3000); 
+            }, 3000)
         }
     })
     .catch(error=>{

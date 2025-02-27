@@ -18,11 +18,11 @@ const loadProfile = () => {
         // Display member details
         console.log(data)
         document.getElementById("profile-image").src=data.member.image
-        document.getElementById("profile-name").innerText=`${data.member.user.first_name} ${data.member.user.last_name}`
-        document.getElementById("profile-mobile").innerHTML=`<b>Mobile:</b> ${data.member.mobile_no}`
-        document.getElementById("profile-gender").innerHTML=`<b>Gender:</b> ${data.member.gender}`
-        document.getElementById("profile-weight").innerHTML=`<b>Weight:</b> ${data.member.weight} kg`
-        document.getElementById("profile-height").innerHTML=`<b>Height:</b> ${data.member.height} cm`
+        document.getElementById("name").innerText=`${data.member.user.first_name} ${data.member.user.last_name}`
+        document.getElementById("mobile").innerHTML=`<b>Mobile:</b> ${data.member.mobile_no}`
+        document.getElementById("gender").innerHTML=`<b>Gender:</b> ${data.member.gender}`
+        document.getElementById("weight").innerHTML=`<b>Weight:</b> ${data.member.weight} kg`
+        document.getElementById("height").innerHTML=`<b>Height:</b> ${data.member.height} cm`
         document.getElementById("date-joined").innerHTML=`<b>Joined on:</b> ${data.member.date_joined}`
 
         // Display booking history

@@ -57,9 +57,18 @@ const bookClass=(className)=>{
     })
     .then(res=>res.json().then(data=>({status:res.status,body:data})))
     .then(({status,body})=>{
+        if(status===401){
+            document.getElementById("error-msg").innerText="Please log in and try again"
+            setTimeout(() => {
+                document.getElementById("error-msg").innerText=""
+            }, 2000);
+        }
         if(status===403){
             console.log(body)
             document.getElementById("error-msg").innerText=body.detail
+            setTimeout(() => {
+                document.getElementById("error-msg").innerText=""
+            }, 2000);
         }
         else if (body.error){
             console.log("Error booking class:",body.error)
