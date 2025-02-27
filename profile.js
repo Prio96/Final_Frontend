@@ -10,18 +10,20 @@ const loadProfile = () => {
     .then(data=>{
         if (data.error) {
             console.error(data.error)
+            document.getElementById("profile-main-body").innerHTML=""
+            document.getElementById("profile-error-msg").innerText=data.error
             return
         }
 
         // Display member details
         console.log(data)
-        document.getElementById("profile-image").src = data.member.image
-        document.getElementById("member-name").innerText = `${data.member.user.first_name} ${data.member.user.last_name}`
-        document.getElementById("member-mobile").innerHTML = `<b>Mobile:</b> ${data.member.mobile_no}`
-        document.getElementById("member-gender").innerHTML = `<b>Gender:</b> ${data.member.gender}`
-        document.getElementById("member-weight").innerHTML = `<b>Weight:</b> ${data.member.weight} kg`
-        document.getElementById("member-height").innerHTML = `<b>Height:</b> ${data.member.height} cm`
-        document.getElementById("date-joined").innerHTML = `<b>Joined on:</b> ${data.member.date_joined}`
+        document.getElementById("profile-image").src=data.member.image
+        document.getElementById("profile-name").innerText=`${data.member.user.first_name} ${data.member.user.last_name}`
+        document.getElementById("profile-mobile").innerHTML=`<b>Mobile:</b> ${data.member.mobile_no}`
+        document.getElementById("profile-gender").innerHTML=`<b>Gender:</b> ${data.member.gender}`
+        document.getElementById("profile-weight").innerHTML=`<b>Weight:</b> ${data.member.weight} kg`
+        document.getElementById("profile-height").innerHTML=`<b>Height:</b> ${data.member.height} cm`
+        document.getElementById("date-joined").innerHTML=`<b>Joined on:</b> ${data.member.date_joined}`
 
         // Display booking history
         const BookingHistoryContainer=document.getElementById("booking-history-container")
@@ -50,7 +52,7 @@ const loadProfile = () => {
         })
         }
     })
-    .catch(error => console.error("Error fetching profile:", error))
+    .catch(error => console.error("Error fetching profile:",error))
 }
 
 loadProfile()

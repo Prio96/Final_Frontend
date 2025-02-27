@@ -6,9 +6,9 @@ const getparams = () => {
 }
 
 const displayInstructorDetails = (instructor) => {
-    const parent = document.getElementById("instructor-details")
+    const parent = document.getElementById("instructor-details-container")
     const div = document.createElement("div")
-    div.classList.add("instructor-details-container")
+    div.classList.add("instructor-details","d-flex","justify-content-center","gap-5","w-50","m-auto")
     div.innerHTML = `
         <div class="instructor-img">
             <img src=${instructor.image} class="object-fit-cover" style="height:30vh;width:18rem" alt="">
@@ -24,7 +24,7 @@ const displayInstructorDetails = (instructor) => {
             </p>
             <h5>About Me</h5>
             <p class="w-50">${instructor.bio}</p>
-            <p class="w-50">Phone Number: ${instructor.phone}</p>
+            <p class="w-50"><b>Phone Number:</b> ${instructor.phone}</p>
         </div>
     `
     parent.appendChild(div)

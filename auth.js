@@ -104,7 +104,7 @@ const handleMemberLogin=(event)=>{
             document.getElementById("success-msg").innerText='Login successful'
             setTimeout(()=>{
                 window.location.href="profile.html"
-            },3000)  
+            },2000)  
         }
         else{
             ShowErrorMessage(body)
@@ -122,7 +122,7 @@ const ShowSuccessMessage=(body)=>{
     SuccessElement.innerText=body.success
     setTimeout(() => {
         SuccessElement.innerText=""
-    }, 3000); 
+    }, 2000); 
 }
 
 const ShowErrorMessage=(body)=>{
@@ -132,7 +132,7 @@ const ShowErrorMessage=(body)=>{
     SuccessElement.innerText=""
     setTimeout(() => {
         ErrorElement.innerText=""
-    }, 3000);
+    }, 2000);
 }
 
 const ShowCatchErrorMessage=(error)=>{
@@ -140,5 +140,5 @@ const ShowCatchErrorMessage=(error)=>{
     document.getElementById("success-msg").innerText=""
     setTimeout(() => {
         document.getElementById("error-msg").innerText=""
-    }, 3000)
+    }, 2000)
 }

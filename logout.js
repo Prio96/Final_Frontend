@@ -10,7 +10,6 @@ const handlelogOut=()=>{
     })
     .then(res=>res.json())
     .then(data=>{
-        console.log(data)
         localStorage.removeItem("token")
         localStorage.removeItem("user_id")
         window.location.href='login.html'

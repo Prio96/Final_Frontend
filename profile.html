@@ -35,13 +35,15 @@
               </div>
         </div>
     </nav>
-    <div class="profile-container w-75 m-auto d-flex justify-content-around align-items-center mt-3">
+    <p class="text-center text-danger" id="profile-error-msg"></p>
+    <main id="profile-main-body">
+      <div class="profile-container w-75 m-auto d-flex justify-content-around align-items-center mt-3">
         <div class="profile-details">
-            <h2 id="member-name"></h2>
-            <p id="member-mobile"></p>
-            <p id="member-gender"></p>
-            <p id="member-weight"></p>
-            <p id="member-height"></p>
+            <h2 id="profile-name"></h2>
+            <p id="profile-mobile"></p>
+            <p id="profile-gender"></p>
+            <p id="profile-weight"></p>
+            <p id="profile-height"></p>
             <p id="date-joined"></p>
         </div>
         <img id="profile-image" src="" alt="Profile Picture">
@@ -49,9 +51,6 @@
     </div>
     <div class="booking-history-container w-50 m-auto mt-5" id="booking-history-container">
         <h3 class="text-center">Booking History</h3>
-        <!-- <ul id="booking-history" class="list-unstyled">
-
-        </ul> -->
         <table class="table table-bordered table-dark" id="table">
             <thead>
               <tr>
@@ -62,17 +61,12 @@
               </tr>
             </thead>
             <tbody id="booking-history">
-              <!-- <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr> -->
+              
             </tbody>
           </table>
     </div>
-        
-    
+    </main>
+
     <script src="./index.js"></script>
     <script src="auth.js"></script>
     <script src="logout.js"></script>

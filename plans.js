@@ -49,10 +49,10 @@ const DisplayAllPlans=(plans)=>{
                 <a href="#" class="subscribe-btn btn btn-dark card-link">Subscribe</a>
             </div>
         `
-        div.querySelector(".subscribe-btn").addEventListener("click", (event) => {
-            event.preventDefault();
-            SubscribePlan(plan.id);
-        });
+        div.querySelector(".subscribe-btn").addEventListener("click",(event)=>{
+            event.preventDefault()
+            SubscribePlan(plan.id)
+        })
         parent.appendChild(div)
     })
 }
@@ -63,20 +63,26 @@ const SubscribePlan=(planId)=>{
             'Authorization':`Token ${token}`,
             "Content-Type": "application/json"
         },
-        credentials: "include",
-        body: JSON.stringify({plan:planId})
+        credentials:"include",
+        body:JSON.stringify({plan:planId})
     })
-    .then(res=>res.json().then(data=>({status:res.status, body:data})))
+    .then(res=>res.json().then(data=>({status:res.status,body:data})))
     .then(({status,body})=>{
-        if(body.error){
+        if(status===403){
+            document.getElementById("error-msg").innerText=body.detail
+        }
+        else if(body.error){
             ShowErrorMessage(body)
         }
         else{
             ShowSuccessMessage(body)
+            setTimeout(() => {
+                window.location.reload()
+            }, 2000);
         }
     })
     .catch(error=>{
-        console.error("Error subscribing:", error)
+        console.error("Error subscribing:",error)
         ShowCatchErrorMessage(error) 
     })
 }
@@ -90,15 +96,28 @@ const OpenUpdateModal=()=>{
             const parent=document.getElementById("plan-options")
             const li=document.createElement("li")
             li.classList.add("m-2")
-            li.innerHTML=`<button class="btn btn-dark">${plan.name} - $${plan.price}</button>`
-            li.value=plan.id
-            li.addEventListener("click", function() {
-                document.querySelectorAll("#plan-options li").forEach(item => item.classList.remove("selected"));
-                this.classList.add("selected");
+
+            const button=document.createElement("button")
+            button.classList.add("btn","btn-dark")
+            button.innerText=`${plan.name} - $${plan.price}`
+            button.value=plan.id
+
+            li.appendChild(button)
+
+            button.addEventListener("click", function(){
+                document.querySelectorAll("#plan-options button").forEach(item=>{
+                    item.classList.remove("selected")
+                    item.classList.remove("btn-light")
+                    item.classList.add("btn-dark")
+                    item.style.color=""
+                })
+                this.classList.add("selected")
+                this.classList.remove("btn-dark")
+                this.classList.add("btn-light")
+                this.style.color="black"
             })
-        parent.appendChild(li)
-    })
-    
+            parent.appendChild(li)
+        })
     })
     .catch(error=>{
         console.error("Error fetching plans:", error)
@@ -107,21 +126,25 @@ const OpenUpdateModal=()=>{
     })
 }
 const UpdatePlan=()=>{
-    const selectedPlan=document.querySelector("#plan-options li.selected")
+    const selectedPlan=document.querySelector("#plan-options button.selected")
     const planId=selectedPlan.value
 
     fetch("https://gymbackend-flax.vercel.app/subscription/update-subscription/", {
-        method: "PUT",
-        headers: {
+        method:"PUT",
+        headers:{
             "Authorization": `Token ${token}`,
             "Content-Type": "application/json"
         },
-        credentials: "include",
-        body: JSON.stringify({ plan: planId })
+        credentials:"include",
+        body:JSON.stringify({plan:planId})
     })
-    .then(res=>res.json().then(data=>({status:res.status, body:data})))
-    .then(({status,body}) => {
-        if(body.error){
+    .then(res=>res.json().then(data=>({status:res.status,body:data})))
+    .then(({status,body})=>{
+        if(status===403){
+            CloseModal()
+            document.getElementById("error-msg").innerText=body.detail
+        }
+        else if(body.error){
             console.log("Error updating plan:", body.error)
             CloseModal()
             ShowErrorMessage(body)
@@ -136,7 +159,7 @@ const UpdatePlan=()=>{
             }, 3000); 
         }
     })
-    .catch(error =>{
+    .catch(error=>{
         CloseModal()
         console.error("Error updating plan:", error)
         ShowCatchErrorMessage(error)
@@ -144,9 +167,9 @@ const UpdatePlan=()=>{
 }
 
 const CloseModal=()=>{
-    const modal = document.getElementById("exampleModalCenter");
-    const bootstrapModal = bootstrap.Modal.getInstance(modal); 
-    bootstrapModal.hide();
+    const modal = document.getElementById("exampleModalCenter")
+    const bootstrapModal = bootstrap.Modal.getInstance(modal) 
+    bootstrapModal.hide()
 }
 
 

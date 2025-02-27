@@ -4,17 +4,17 @@ const getparams = () => {
         .then(res => res.json())
         .then(data => displayClassDetails(data))
         .catch(error=>{
-            console.error("Error:", error)
+            console.error("Error:",error)
             ShowCatchErrorMessage(error)
         })
 }
 
-const displayClassDetails = (session) => {
+const displayClassDetails=(session)=>{
     console.log(session)
-    const parent = document.getElementById("class-details")
-    const div = document.createElement("div")
+    const parent=document.getElementById("class-details")
+    const div=document.createElement("div")
     div.classList.add("class-details-container","d-flex","justify-content-center","gap-4")
-    div.innerHTML = `
+    div.innerHTML=`
     <div class="class-details">
         <h3>${session.name}</h3>
             <p>${session.topic.name}</p>
@@ -37,37 +37,41 @@ const displayClassDetails = (session) => {
             
     `
     parent.appendChild(div)
-    document.getElementById("book-class-btn").addEventListener("click", () => {
+    document.getElementById("book-class-btn").addEventListener("click",()=>{
         bookClass(session.name); 
     });
 }
 
-const bookClass = (className) => {
-    const token = localStorage.getItem("token");
+const bookClass=(className)=>{
+    const token=localStorage.getItem("token");
 
     fetch("https://gymbackend-flax.vercel.app/class/book_class/", {
-        method: "POST",
-        headers: {
+        method:"POST",
+        headers:{
             "Authorization": `Token ${token}`,
             "Content-Type": "application/json"
         },
-        credentials: "include", 
-        body: JSON.stringify({ class_session: className })
+        credentials:"include", 
+        body:JSON.stringify({class_session:className})
         
     })
-    .then(res=>res.json().then(data=>({status:res.status, body:data})))
-    .then(({ status, body }) => {
-        if (body.error) {
+    .then(res=>res.json().then(data=>({status:res.status,body:data})))
+    .then(({status,body})=>{
+        if(status===403){
+            console.log(body)
+            document.getElementById("error-msg").innerText=body.detail
+        }
+        else if (body.error){
             console.log("Error booking class:",body.error)
             ShowErrorMessage(body)
         } 
-        else {
+        else{
             console.log(body.success)
-            console.log(body.data)
+            console.log(body)
             ShowSuccessMessage(body)
         }
     })
-    .catch(error => {
+    .catch(error=>{
         console.error("Error:", error);
         ShowCatchErrorMessage(error)
     });
