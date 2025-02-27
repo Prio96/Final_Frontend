@@ -63,7 +63,7 @@ const bookClass=(className)=>{
                 document.getElementById("error-msg").innerText=""
             }, 2000);
         }
-        if(status===403){
+        else if(status===403){
             console.log(body)
             document.getElementById("error-msg").innerText=body.detail
             setTimeout(() => {
