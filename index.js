@@ -3,7 +3,7 @@ const truncateWords = (text, numWords) => {
     return words.length > numWords ? words.slice(0, numWords).join(" ") + "..." : text
 }
 const loadAllClasses=()=>{
-    fetch("https://gymbackend-flax.vercel.app/class/classes/")
+    fetch("https://gmsfinal.vercel.app/class/classes/")
     .then(res=>res.json())
     .then(data=>DisplayClasses(data.results))
     .catch((error)=>{
@@ -12,7 +12,7 @@ const loadAllClasses=()=>{
     })
 }
 const loadAllInstructors=()=>{
-    fetch("https://gymbackend-flax.vercel.app/class/instructors/")
+    fetch("https://gmsfinal.vercel.app/class/instructors/")
     .then(res=>res.json())
     .then(data=>DisplayInstructors(data.results))
     .catch((error)=>{

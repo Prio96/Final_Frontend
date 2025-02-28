@@ -1,6 +1,6 @@
 const getparams = () => {
     const param = new URLSearchParams(window.location.search).get("ClassId")
-    fetch(`https://gymbackend-flax.vercel.app/class/classes/${param}`)
+    fetch(`https://gmsfinal.vercel.app/class/classes/${param}`)
         .then(res => res.json())
         .then(data => displayClassDetails(data))
         .catch(error=>{
@@ -45,7 +45,7 @@ const displayClassDetails=(session)=>{
 const bookClass=(className)=>{
     const token=localStorage.getItem("token");
 
-    fetch("https://gymbackend-flax.vercel.app/class/book_class/", {
+    fetch("https://gmsfinal.vercel.app/class/book_class/", {
         method:"POST",
         headers:{
             "Authorization": `Token ${token}`,

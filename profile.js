@@ -1,5 +1,5 @@
 const loadProfile = () => {
-    fetch("https://gymbackend-flax.vercel.app/member/member_profile/", {
+    fetch("https://gmsfinal.vercel.app/member/member_profile/", {
         method: "GET",
         headers: {
             "Authorization": `Token ${token}`,

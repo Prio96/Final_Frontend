@@ -56,7 +56,7 @@ const handleMemberRegistration=(event)=>{
     formData.append("weight", getValue("weight"))
     formData.append("height", getValue("height"))
     if (getValue("password") === getValue("confirm_password")){
-        fetch("https://gymbackend-flax.vercel.app/member/register/", {
+        fetch("https://gmsfinal.vercel.app/member/register/", {
             method: "POST",
             body: formData,
         })
@@ -88,7 +88,7 @@ const handleMemberLogin=(event)=>{
     event.preventDefault()
     const username=getValue("login-username")
     const password=getValue("login-password")
-    fetch("https://gymbackend-flax.vercel.app/staff/login/",{
+    fetch("https://gmsfinal.vercel.app/staff/login/",{
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body:JSON.stringify({username,password}),

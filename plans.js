@@ -1,5 +1,5 @@
 const LoadAllPlans=()=>{
-    fetch('https://gymbackend-flax.vercel.app/subscription/plans/')
+    fetch('https://gmsfinal.vercel.app/subscription/plans/')
     .then(res=>res.json())
     .then(data=>{
         console.log(data.results)
@@ -11,7 +11,7 @@ const LoadAllPlans=()=>{
     })
 }
 const LoadCurrentPlan=()=>{
-    fetch("https://gymbackend-flax.vercel.app/subscription/subscribe/",{
+    fetch("https://gmsfinal.vercel.app/subscription/subscribe/",{
         method:'GET',
         headers:{
             'Authorization':`Token ${localStorage.getItem("token")}`,
@@ -57,7 +57,7 @@ const DisplayAllPlans=(plans)=>{
     })
 }
 const SubscribePlan=(planId)=>{
-    fetch("https://gymbackend-flax.vercel.app/subscription/subscribe/",{
+    fetch("https://gmsfinal.vercel.app/subscription/subscribe/",{
         method:'POST',
         headers:{
             'Authorization':`Token ${token}`,
@@ -98,7 +98,7 @@ const SubscribePlan=(planId)=>{
 const OpenUpdateModal=()=>{
     $("#exampleModalCenter").modal("show")
     document.getElementById("plan-options").innerHTML=``
-    fetch("https://gymbackend-flax.vercel.app/subscription/plans/")
+    fetch("https://gmsfinal.vercel.app/subscription/plans/")
     .then(res=>res.json())
     .then(plans=>{
         plans.results.forEach(plan=>{
@@ -138,7 +138,7 @@ const UpdatePlan=()=>{
     const selectedPlan=document.querySelector("#plan-options button.selected")
     const planId=selectedPlan.value
 
-    fetch("https://gymbackend-flax.vercel.app/subscription/update-subscription/", {
+    fetch("https://gmsfinal.vercel.app/subscription/update-subscription/", {
         method:"PUT",
         headers:{
             "Authorization": `Token ${token}`,

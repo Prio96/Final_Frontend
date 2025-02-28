@@ -1,6 +1,6 @@
 const getparams = () => {
     const param = new URLSearchParams(window.location.search).get("InstructorId")
-    fetch(`https://gymbackend-flax.vercel.app/class/instructors/${param}`)
+    fetch(`https://gmsfinal.vercel.app/class/instructors/${param}`)
         .then(res => res.json())
         .then(data => displayInstructorDetails(data))
         .catch(error=>{
