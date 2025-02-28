@@ -1,5 +1,5 @@
 const loadProfile = () => {
-    fetch("https://gymbackend-flax.vercel.app/member/member_profile/", {
+    fetch("http://127.0.0.1:8000/member/member_profile/", {
         method: "GET",
         headers: {
             "Authorization": `Token ${token}`,
@@ -19,6 +19,7 @@ const loadProfile = () => {
         console.log(data)
         document.getElementById("profile-image").src=data.member.image
         document.getElementById("name").innerText=`${data.member.user.first_name} ${data.member.user.last_name}`
+        document.getElementById("member-id").innerHTML=`<b>Member ID:</b> ${data.member.id}`
         document.getElementById("mobile").innerHTML=`<b>Mobile:</b> ${data.member.mobile_no}`
         document.getElementById("gender").innerHTML=`<b>Gender:</b> ${data.member.gender}`
         document.getElementById("weight").innerHTML=`<b>Weight:</b> ${data.member.weight} kg`

@@ -61,13 +61,13 @@ const handleMemberRegistration=(event)=>{
             body: formData,
         })
         .then(res=>res.json().then(data=>({status:res.status,body:data})))
-        .then(({ status, body }) => {
+        .then(({status,body}) => {
             if (!body.error) {
                 console.log(body)
                 ShowSuccessMessage(body);
-                setTimeout(() => {
+                setTimeout(()=>{
                     window.location.href = "login.html";
-                }, 3000);
+                },2000);
             } 
             else {
                 ShowErrorMessage(body);
@@ -88,20 +88,20 @@ const handleMemberLogin=(event)=>{
     event.preventDefault()
     const username=getValue("login-username")
     const password=getValue("login-password")
-    fetch("https://gymbackend-flax.vercel.app/staff/login/",{
+    fetch("http://127.0.0.1:8000/staff/login/",{
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body:JSON.stringify({username,password}),
         credentials:"include"
     })
-    .then(res=>res.json().then(data=>({status:res.status, body:data})))
+    .then(res=>res.json().then(data=>({status:res.status,body:data})))
     .then(({status,body})=>{
         if(!body.error){
-            console.log(body)
+            console.log(body) //Show user id and token in console
             localStorage.setItem("token",body.token)
             localStorage.setItem("user_id",body.user_id)
             document.getElementById("error-msg").innerText=''
-            document.getElementById("success-msg").innerText='Login successful'
+            document.getElementById("success-msg").innerText='Login successful' //Custom success message (Instead of ShowSuccessMessage function) since the perfect success message for frontend(after login)has not been set in backend.
             setTimeout(()=>{
                 window.location.href="profile.html"
             },2000)  

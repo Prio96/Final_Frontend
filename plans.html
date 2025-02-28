@@ -9,14 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
         crossorigin="anonymous">
     <link rel="stylesheet" href="plans.css">
-    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="footer.css">
 </head>
 <body>
   <nav class="nav-secondary d-flex justify-content-around align-items-center p-4">
     <div class="logo-container d-flex align-items-center gap-2">
-        
         <h3 class="mt-1" style="color:whitesmoke">Fitness Mania</h3>
     </div>
     <div class="menu-container d-flex gap-3">
@@ -40,28 +38,13 @@
       <p id="error-msg" class="text-center text-danger mt-4"></p>
       <p id="success-msg" class="text-center text-success mt-4"></p>
       <div class="all-plans w-50 m-auto mt-5 d-flex justify-content-center gap-5" id="all-plans">
-        <!-- <div class="card plan-card" style="width: 18rem;" id="plan-card">
-            <div class="card-body">
-              <h5 class="card-title">Plan title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Plan price</h6>
-              <a href="#" class="card-link Subscribe-btn btn btn-dark">Subscribe</a>
-            </div>
-          </div> -->
+        <!-- All plans -->
     </div>
     <div class="text-center">
       <button type="button" data-toggle="modal"  class="Update-plan-btn btn btn-dark m-auto" onclick="OpenUpdateModal()">Change Plan</button>
     </div>
     
-    <!-- <div id="update-modal" class="modal modal-dialog modal-dialog-centered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-content">
-          <span class="close-btn" onclick="CloseUpdateModal()">&times;</span>
-          <h3>Update Your Plan</h3>
-          <ul id="plan-options" class="form-control">
-          
-          </ul>
-          <button id="confirm-update" class="btn btn-dark" onclick="UpdatePlan()">Update Plan</button>
-      </div>
-  </div> -->
+    
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -71,7 +54,7 @@
         </div>
         <div class="modal-body">
           <ul id="plan-options" class="form-control list-unstyled">
-
+            <!-- Plans inside modal -->
           </ul>
         </div>
         <div class="modal-footer">
@@ -82,9 +65,9 @@
   </div>
     </main>
     
-    <footer class="p-5">
-      <p class="text-center text-white mt-3"><small>Copyright © Fitness Mania. All Rights Reserved</small></p>
-    </footer>
+  <footer class="footer-sticky p-3">
+      <p class="text-center mt-3 text-white"><small>Copyright © Fitness Mania. All Rights Reserved</small></p>
+  </footer>
   <script src="plans.js"></script>
   <script src="auth.js"></script>
   <script src="logout.js"></script>

@@ -1,4 +1,4 @@
-"<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="footer.css">
@@ -16,7 +15,6 @@
 <body>
     <nav class="nav-secondary d-flex justify-content-around align-items-center p-4">
         <div class="logo-container d-flex align-items-center gap-2">
-            
             <h3 class="mt-1" style="color:whitesmoke">Fitness Mania</h3>
         </div>
         <div class="menu-container d-flex gap-3">
@@ -40,6 +38,7 @@
       <div class="profile-container w-75 m-auto d-flex justify-content-around align-items-center mt-3">
         <div class="profile-details">
             <h2 id="name"></h2>
+            <p id="member-id"></p>
             <p id="mobile"></p>
             <p id="gender"></p>
             <p id="weight"></p>
@@ -66,8 +65,9 @@
           </table>
     </div>
     </main>
-
-    <script src="./index.js"></script>
+    <footer class="footer-sticky p-3">
+      <p class="text-center mt-3 text-white"><small>Copyright © Fitness Mania. All Rights Reserved</small></p>
+    </footer>
     <script src="auth.js"></script>
     <script src="logout.js"></script>
     <script src="profile.js"></script>
