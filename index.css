@@ -24,5 +24,11 @@ header{
 #instructor-card{
     width:15vw;
 }
+.class-card-btns{
+    margin-left: -1%;
+}
+.class-card-btn{
+    width:10vw;
+}
 
 

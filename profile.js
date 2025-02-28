@@ -8,6 +8,7 @@ const loadProfile = () => {
     })
     .then(res=>res.json())
     .then(data=>{
+        document.getElementById("profile-spinner").innerHTML=""
         if (data.error) {
             console.error(data.error)
             document.getElementById("profile-main-body").innerHTML=""
@@ -56,6 +57,7 @@ const loadProfile = () => {
         }
     })
     .catch(error=>{
+        document.getElementById("profile-spinner").innerHTML=""
         console.error("Error fetching profile:",error)
         document.getElementById("profile-error-msg").innerText=data.error
     })

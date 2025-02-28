@@ -3,10 +3,12 @@ const LoadAllPlans=()=>{
     .then(res=>res.json())
     .then(data=>{
         console.log(data.results)
+        document.getElementById("all-plans-spinner").innerHTML=""
         DisplayAllPlans(data.results)
     })
     .catch(error=>{
         console.error("Error fetching plans:", error)
+        document.getElementById("all-plans-spinner").innerHTML=""
         ShowCatchErrorMessage(error)
     })
 }

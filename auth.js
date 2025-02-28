@@ -1,13 +1,6 @@
 const token = localStorage.getItem("token")
 const user_id=localStorage.getItem("user_id")
-if(token && user_id){
-    alert("Token and user_id found")
-    console.log(token)
-    console.log(user_id)
-}
-else{
-    alert("Token and user id not found")
-}
+
 const JoinUsButton=document.getElementById("join-us-btn")
 const LoginLink=document.getElementById("login-link")
 const RegisterLink=document.getElementById("register-link")

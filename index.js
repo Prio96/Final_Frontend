@@ -5,18 +5,26 @@ const truncateWords = (text, numWords) => {
 const loadAllClasses=()=>{
     fetch("https://gmsfinal.vercel.app/class/classes/")
     .then(res=>res.json())
-    .then(data=>DisplayClasses(data.results))
+    .then(data=>{
+        document.getElementById("class-spinner").innerHTML=""
+        DisplayClasses(data.results)
+    })
     .catch((error)=>{
         console.log(error)
+        document.getElementById("class-spinner").innerHTML=""
         document.getElementById("class-container-error-msg").innerText=`Unexpected error: ${error}`
     })
 }
 const loadAllInstructors=()=>{
     fetch("https://gmsfinal.vercel.app/class/instructors/")
     .then(res=>res.json())
-    .then(data=>DisplayInstructors(data.results))
+    .then(data=>{
+        document.getElementById("instructor-spinner").innerHTML=""
+        DisplayInstructors(data.results)
+    })
     .catch((error)=>{
         console.log(error)
+        document.getElementById("instructor-spinner").innerHTML=""
         document.getElementById("instructor-container-error-msg").innerText=`Unexpected error: ${error}`
     })
 }
@@ -32,9 +40,9 @@ const DisplayClasses=(classes)=>{
             <h3 class="text-uppercase h5">${session.name}</h3>
             <p>${session.topic.name}</p>
             <p>${truncateWords(session.description, 10)}</p>
-            <p>
+            <p class="class-card-btns">
             ${session.time.map((item)=>{
-                return `<button class="btn btn-outline-light text-white m-1" style="background-color: black">${item}</button>`
+                return `<button class="btn btn-outline-light text-white m-1 class-card-btn" style="background-color: black">${item}</button>`
             }).join(" ")}
             </p>
             <button class="btn btn-outline-light"><a class="text-decoration-none text-white detail-btn" target="_blank" href="class_details.html?ClassId=${session.id}">Details</a></button>

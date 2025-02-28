@@ -2,8 +2,12 @@ const getparams = () => {
     const param = new URLSearchParams(window.location.search).get("ClassId")
     fetch(`https://gmsfinal.vercel.app/class/classes/${param}`)
         .then(res => res.json())
-        .then(data => displayClassDetails(data))
+        .then(data =>{
+            document.getElementById("class-detail-spinner").innerHTML=""
+            displayClassDetails(data)
+        })
         .catch(error=>{
+            document.getElementById("class-detail-spinner").innerHTML=""
             console.error("Error:",error)
             ShowCatchErrorMessage(error)
         })
@@ -17,14 +21,14 @@ const displayClassDetails=(session)=>{
     div.innerHTML=`
     <div class="class-details">
         <h3>${session.name}</h3>
-            <p>${session.topic.name}</p>
-            <p>
+            <p><b>${session.topic.name}</b></p>
+            <p class="class-time">
             ${session.time.map(item => {
         return `<button class="btn btn-dark m-2 me-1">${item}</button>`
     }).join(" ")
         }
             </p>
-            <p>Instructor: ${session.instructor}</p>
+            <p><b>Instructor:</b> ${session.instructor}</p>
             
             <p>${session.description}</p>
             <button class="btn btn-dark" id="book-class-btn">
