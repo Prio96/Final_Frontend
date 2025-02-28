@@ -20,10 +20,10 @@ const displayClassDetails=(session)=>{
             <p>${session.topic.name}</p>
             <p>
             ${session.time.map(item => {
-        return `<button class="btn btn-dark">${item}</button>`
+        return `<button class="btn btn-dark m-2 me-1">${item}</button>`
     }).join(" ")
         }
-        </p>
+            </p>
             <p>Instructor: ${session.instructor}</p>
             
             <p>${session.description}</p>

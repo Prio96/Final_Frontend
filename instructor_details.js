@@ -3,6 +3,10 @@ const getparams = () => {
     fetch(`https://gymbackend-flax.vercel.app/class/instructors/${param}`)
         .then(res => res.json())
         .then(data => displayInstructorDetails(data))
+        .catch(error=>{
+            console.log(error)
+            document.getElementById("instructor-detail-error-msg").innerText=error
+        })
 }
 
 const displayInstructorDetails = (instructor) => {
@@ -16,7 +20,8 @@ const displayInstructorDetails = (instructor) => {
         <div class="instructor-info">
             <h3>${instructor.name}</h3>
             <p>${instructor.email}</p>
-            <p> <h5>Expertise</h5>
+            <h5>Expertise</h5>
+            <p>
             ${instructor.specialization.map(item => {
         return `<button class="instructor-detail-btn btn btn-outline-dark btn-dark text-white">${item}</button>`
     }).join(" ")

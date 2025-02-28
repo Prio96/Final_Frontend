@@ -66,17 +66,17 @@ const handleMemberRegistration=(event)=>{
                 console.log(body)
                 ShowSuccessMessage(body);
                 setTimeout(()=>{
-                    window.location.href = "login.html";
-                },2000);
+                    window.location.href = "login.html"
+                },2000)
             } 
             else {
-                ShowErrorMessage(body);
+                ShowErrorMessage(body)
             }
         })
-        .catch(error => {
-            console.error("Error:", error);
+        .catch(error=>{
+            console.error("Error:", error)
             ShowCatchErrorMessage(error)
-        });
+        })
     }
     else{
         document.getElementById("error-msg").innerText="Passwords do not match"
@@ -88,7 +88,7 @@ const handleMemberLogin=(event)=>{
     event.preventDefault()
     const username=getValue("login-username")
     const password=getValue("login-password")
-    fetch("http://127.0.0.1:8000/staff/login/",{
+    fetch("https://gymbackend-flax.vercel.app/staff/login/",{
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body:JSON.stringify({username,password}),
@@ -110,9 +110,13 @@ const handleMemberLogin=(event)=>{
             ShowErrorMessage(body)
         }
     })
+    .catch(error=>{
+        console.error("Error:", error)
+        ShowCatchErrorMessage(error)
+    })
 }
-const getValue = (id) => {
-    const value = document.getElementById(id).value
+const getValue=(id)=>{
+    const value=document.getElementById(id).value
     return value
 }
 const ShowSuccessMessage=(body)=>{

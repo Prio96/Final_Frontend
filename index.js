@@ -6,13 +6,19 @@ const loadAllClasses=()=>{
     fetch("https://gymbackend-flax.vercel.app/class/classes/")
     .then(res=>res.json())
     .then(data=>DisplayClasses(data.results))
-    .catch((err) => console.log(err))
+    .catch((error)=>{
+        console.log(error)
+        document.getElementById("class-container-error-msg").innerText=`Unexpected error: ${error}`
+    })
 }
 const loadAllInstructors=()=>{
     fetch("https://gymbackend-flax.vercel.app/class/instructors/")
     .then(res=>res.json())
     .then(data=>DisplayInstructors(data.results))
-    .catch((err) => console.log(err))
+    .catch((error)=>{
+        console.log(error)
+        document.getElementById("instructor-container-error-msg").innerText=`Unexpected error: ${error}`
+    })
 }
 loadAllClasses()
 loadAllInstructors()
@@ -28,7 +34,7 @@ const DisplayClasses=(classes)=>{
             <p>${truncateWords(session.description, 10)}</p>
             <p>
             ${session.time.map((item)=>{
-                return `<button class="btn btn-outline-light text-white" style="background-color: black">${item}</button>`
+                return `<button class="btn btn-outline-light text-white m-1" style="background-color: black">${item}</button>`
             }).join(" ")}
             </p>
             <button class="btn btn-outline-light"><a class="text-decoration-none text-white detail-btn" target="_blank" href="class_details.html?ClassId=${session.id}">Details</a></button>

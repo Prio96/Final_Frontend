@@ -1,5 +1,5 @@
 const loadProfile = () => {
-    fetch("http://127.0.0.1:8000/member/member_profile/", {
+    fetch("https://gymbackend-flax.vercel.app/member/member_profile/", {
         method: "GET",
         headers: {
             "Authorization": `Token ${token}`,
@@ -15,7 +15,7 @@ const loadProfile = () => {
             return
         }
 
-        // Display member details
+        // Show details of member
         console.log(data)
         document.getElementById("profile-image").src=data.member.image
         document.getElementById("name").innerText=`${data.member.user.first_name} ${data.member.user.last_name}`
@@ -26,11 +26,12 @@ const loadProfile = () => {
         document.getElementById("height").innerHTML=`<b>Height:</b> ${data.member.height} cm`
         document.getElementById("date-joined").innerHTML=`<b>Joined on:</b> ${data.member.date_joined}`
 
-        // Display booking history
+        // Show booking history
         const BookingHistoryContainer=document.getElementById("booking-history-container")
         const BookingTable=document.getElementById("table")
         const BookingList=document.getElementById("booking-history")
         BookingList.innerHTML=""
+        // If booking history is empty
         if(data.bookings.length===0){
             BookingTable.style.display='none'
             const EmptyMessage=document.createElement("p")
@@ -38,6 +39,7 @@ const loadProfile = () => {
             EmptyMessage.innerText="The booking history is empty"
             BookingHistoryContainer.appendChild(EmptyMessage)
         }
+        //If booking history is not empty
         else{
             let count=0
             data.bookings.forEach(booking => {
@@ -53,7 +55,10 @@ const loadProfile = () => {
         })
         }
     })
-    .catch(error => console.error("Error fetching profile:",error))
+    .catch(error=>{
+        console.error("Error fetching profile:",error)
+        document.getElementById("profile-error-msg").innerText=data.error
+    })
 }
 
 loadProfile()
